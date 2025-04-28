@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeltaTruxwir - Лизинговые решения</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #FFD700;
+            --accent-color: #008000;
+            --text-color: #333;
+            --white-color: #fff;
+            --light-gray: #f9f9f9;
+            --dark-gray: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 51, 102, 0.8)), 
+                        url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf') no-repeat center/cover;
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: var(--light-gray);
+            clip-path: polygon(0 70%, 100% 0, 100% 100%, 0% 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin: 0 auto 40px;
+            font-weight: 400;
+            max-width: 700px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            background-color: #ffcc00;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 20px;
+            background-color: var(--white-color);
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            position: relative;
+            padding-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background-color: var(--white-color);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border: 1px solid var(--dark-gray);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-img {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+
+        .service-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .service-content p {
+            margin-bottom: 25px;
+            flex-grow: 1;
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .service-btn {
+            align-self: flex-start;
+            margin-top: auto;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            font-size: 1rem;
+            box-shadow: none;
+        }
+
+        .service-btn:hover {
+            background-color: #002244;
+            color: white;
+        }
+
+        /* Process Section */
+        .process {
+            padding: 80px 20px;
+            background-color: var(--light-gray);
+            text-align: center;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 50px auto 0;
+        }
+
+        .step {
+            background-color: var(--white-color);
+            border-radius: 10px;
+            padding: 40px 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        /* Equipment Grid */
+        .equipment-grid {
+            display: none;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 40px 0;
+        }
+
+        .equipment-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .equipment-img {
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .equipment-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .equipment-card:hover .equipment-img img {
+            transform: scale(1.05);
+        }
+
+        .equipment-info {
+            padding: 20px;
+        }
+
+        .equipment-info h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .equipment-price {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .back-btn {
+            display: block;
+            margin: 30px auto;
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 60px 20px 30px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: var(--white-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--secondary-color);
+        }
+
+        .footer-legal {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            overflow: auto;
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            background-color: var(--white-color);
+            margin: 10% auto;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalSlideIn 0.4s;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close {
+            color: #aaa;
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close:hover {
+            color: var(--primary-color);
+        }
+
+        .modal-title {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--primary-color);
+            font-size: 0.95rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            margin-top: 10px;
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .submit-btn:hover {
+            background-color: #002244;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 100px 20px;
+                min-height: 60vh;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .services {
+                padding: 70px 20px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 40px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+            
+            .service-content {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Лизинговые решения для вашего бизнеса</h1>
+            <p>Специальные условия для новых клиентов – ставка от 5% годовых. Получите технику или оборудование уже сегодня.</p>
+            <button id="openModal" class="btn">Оставить заявку</button>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <h2 class="section-title">Наши услуги</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.65ta7kwVR8v6DSOjUpbk_gHaFf%26pid%3DApi&f=1&ipt=4538c0cbd721b136cbb2c7594f143741e13fc9e1c4114c61747b17cf4c2b2145&ipo=images" alt="Лизинг оборудования">
+                </div>
+                <div class="service-content">
+                    <h3>Лизинг оборудования</h3>
+                    <p>Станки, производственные линии, медицинское и IT-оборудование с минимальными первоначальными затратами.</p>
+                    <a href="#" class="btn service-btn">Подробнее</a>
+                </div>
+            </div>
+
+            <div class="service-card" id="special-equipment">
+                <div class="service-img">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.liftnet.ru%2Fmedia%2Foriginal_images%2Fabout-slide-1.jpg&f=1&nofb=1&ipt=c0dc56c860fb82f522dea09cbf3d05871ea719606f7f3ed66926e97654873681&ipo=images" alt="Лизинг спецтехники">
+                </div>
+                <div class="service-content">
+                    <h3>Лизинг спецтехники</h3>
+                    <p>Экскаваторы, краны, бульдозеры и другая строительная техника на выгодных условиях.</p>
+                    <button class="btn service-btn show-equipment">Подробнее</button>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7" alt="Лизинг транспорта">
+                </div>
+                <div class="service-content">
+                    <h3>Лизинг транспорта</h3>
+                    <p>Грузовики, фуры, коммерческие автомобили с возможностью выкупа по окончании договора.</p>
+                    <a href="#" class="btn service-btn">Подробнее</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Equipment Grid (hidden by default) -->
+        <div class="equipment-grid" id="equipmentGrid">
+            <div class="equipment-card">
+                <div class="equipment-img">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fkran-eks.ru%2Fwp-content%2Fuploads%2F2019%2F09%2F143d42b729aa2838563749f0cb297b80-min.jpg&f=1&nofb=1&ipt=316b5749d4ec67cee66665bae03e6dda649ed1fda02e49f38d10caa648451e8b&ipo=images" alt="Экскаватор">
+                </div>
+                <div class="equipment-info">
+                    <h4>Экскаватор JCB</h4>
+                    <p>Гусеничный экскаватор с ковшом 1,5 м³</p>
+                    <div class="equipment-price">от 15 000 ₽/сутки</div>
+                </div>
+            </div>
+
+            <div class="equipment-card">
+                <div class="equipment-img">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fsnabstroyteh.ru%2Fwp-content%2Fuploads%2F2018%2F01%2Fcat-d6r-2.jpg&f=1&nofb=1&ipt=40153bb0f5460de1363403c6b13f574ea44bf52dd0e9ec2b5fe8153887bb643c&ipo=images" alt="Бульдозер">
+                </div>
+                <div class="equipment-info">
+                    <h4>Бульдозер CAT</h4>
+                    <p>Мощный бульдозер для земляных работ</p>
+                    <div class="equipment-price">от 18 000 ₽/сутки</div>
+                </div>
+            </div>
+
+            <div class="equipment-card">
+                <div class="equipment-img">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstroy-plys.ru%2Fuploads%2Fposts%2F2013-10%2F1382375402_kolesnyy-avtokran-liebherr-ltm-1060.jpg&f=1&nofb=1&ipt=4b0ac4eb9aff9c66462cdb5a00fc292c0e5117d78eb449d24b6dd421474458f9&ipo=images" alt="Автокран">
+                </div>
+                <div class="equipment-info">
+                    <h4>Автокран Liebherr</h4>
+                    <p>Грузоподъемность 50 тонн</p>
+                    <div class="equipment-price">от 25 000 ₽/сутки</div>
+                </div>
+            </div>
+
+            <div class="equipment-card">
+                <div class="equipment-img">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.ixbt.com%2Fimg%2Fn1%2Fnews%2F2024%2F1%2F1%2Fvolvo-fm-low-entry_large.jpg&f=1&nofb=1&ipt=724eb460d657c3333daa1cba9ed4f531bc42dbdac63a5e259e4db0cb220f4d54&ipo=images" alt="Грузовик">
+                </div>
+                <div class="equipment-info">
+                    <h4>Грузовик Volvo</h4>
+                    <p>Грузоподъемность 20 тонн</p>
+                    <div class="equipment-price">от 12 000 ₽/сутки</div>
+                </div>
+            </div>
+
+            <button class="btn back-btn" id="backToServices">Вернуться к услугам</button>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process">
+        <h2 class="section-title">Как это работает</h2>
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3 class="step-title">Оставьте заявку</h3>
+                <p>Заполните простую форму на сайте или позвоните нам по телефону</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3 class="step-title">Согласование условий</h3>
+                <p>Наш менеджер подберет для вас оптимальные условия лизинга</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3 class="step-title">Получите технику</h3>
+                <p>Подпишите договор и получите необходимое оборудование или транспорт</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Компания</h3>
+                <ul>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Команда</a></li>
+                    <li><a href="#">Вакансии</a></li>
+                    <li><a href="#">Новости</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Услуги</h3>
+                <ul>
+                    <li><a href="#">Оборудование</a></li>
+                    <li><a href="#">Спецтехника</a></li>
+                    <li><a href="#">Грузовой транспорт</a></li>
+                    <li><a href="#">Автомобили</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Клиентам</h3>
+                <ul>
+                    <li><a href="#">Акции</a></li>
+                    <li><a href="#">Решения для бизнеса</a></li>
+                    <li><a href="#">Калькулятор лизинга</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p>Москва, ул. Примерная, 123</p>
+                <p>Телефон: <a href="tel:+78001234567">8 (800) 123-45-67</a></p>
+                <p>Email: <a href="mailto:info@deltalizing.ru">info@deltalizing.ru</a></p>
+            </div>
+        </div>
+        <div class="footer-legal">
+            <p class="copyright">© 2025 DeltaTruxwir. Все права защищены</p>
+        </div>
+    </footer>
+
+    <!-- Modal Form -->
+    <div id="applicationModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="modal-title">Оставить заявку</h2>
+            <form id="applicationForm">
+                <div class="form-group">
+                    <label for="name">Ваше имя:</label>
+                    <input type="text" id="name" name="name" required placeholder="Иван Иванов">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Телефон:</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="+7 (999) 123-45-67">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required placeholder="ivan@example.com">
+                </div>
+                <button type="submit" class="btn submit-btn">Отправить заявку</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        const modal = document.getElementById("applicationModal");
+        const btn = document.getElementById("openModal");
+        const span = document.getElementsByClassName("close")[0];
+        const form = document.getElementById("applicationForm");
+
+        // Open modal
+        btn.onclick = function() {
+            modal.style.display = "block";
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal
+        span.onclick = function() {
+            modal.style.display = "none";
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close when clicking outside
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Form submission
+        form.onsubmit = function(e) {
+            e.preventDefault();
+            
+            // Simple validation
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            
+            if (name && phone && email) {
+                // Here you would normally send data to server
+                // For demo we just show alert
+                alert(`Спасибо, ${name}! Ваша заявка принята. Мы свяжемся с вами в ближайшее время.`);
+                
+                // Close modal and reset form
+                modal.style.display = "none";
+                document.body.style.overflow = 'auto';
+                form.reset();
+            }
+        }
+
+        // Equipment show/hide functionality
+        const showEquipmentBtn = document.querySelector('.show-equipment');
+        const equipmentGrid = document.getElementById('equipmentGrid');
+        const backToServicesBtn = document.getElementById('backToServices');
+        const servicesGrid = document.querySelector('.services-grid');
+
+        showEquipmentBtn.addEventListener('click', function() {
+            servicesGrid.style.display = 'none';
+            equipmentGrid.style.display = 'grid';
+            window.scrollTo({
+                top: equipmentGrid.offsetTop - 100,
+                behavior: 'smooth'
+            });
+        });
+
+        backToServicesBtn.addEventListener('click', function() {
+            equipmentGrid.style.display = 'none';
+            servicesGrid.style.display = 'grid';
+            window.scrollTo({
+                top: servicesGrid.offsetTop - 100,
+                behavior: 'smooth'
+            });
+        });
+
+        // Add animation to elements when scrolling
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateElements = document.querySelectorAll('.service-card, .step');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animateElements.forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
